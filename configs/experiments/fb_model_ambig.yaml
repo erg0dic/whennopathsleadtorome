@@ -1,0 +1,43 @@
+exp_name: 'test_ambig'
+epochs: 50
+entropy_reg: 0.001
+remove_not_chains: False
+load_from_checkpoint: False
+NBF_type: NBFdistR 
+schedule: 'step'
+final_noiseless_epochs: 1
+dataset_type: 'ambiguity'
+data_train_path: '../data/ambig/train_ambig.csv'
+just_discretize: False
+eval_mode: True
+is_y_prob_model: False
+do_reg: False
+lr: 0.01
+fp_bp: True
+facets: 16
+hidden_dim: 256
+fw_only: True
+bw_only: False
+
+# margin loss hyperparams
+use_margin_loss: True
+num_negative_samples: 1
+margin: 1.0
+score_fn: 'xent'
+final_linear: False
+outs_as_left_arg: False
+batch_size: 128
+
+
+seed: 42
+aggr_type: 'mul'
+
+# ablations
+ablate_probas: False
+ablate_compose: False
+
+# test only
+test_only: True
+
+# use margin loss
+use_margin_loss_multi: True

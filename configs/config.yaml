@@ -1,0 +1,47 @@
+# universal config params
+
+# reduce the number of y parameters drastically by enforcing y_ir = y_r 
+# so 1 y vector for a relation compositon. 
+fix_ys: False
+
+# only the first layer is active during the message passing rounds
+shared: True
+
+dist: 'euclidean'
+eval_mode: False
+use_mlp_classifier: False
+
+# dimension of the vector embeddings
+hidden_dim: 18
+
+# number of message passing rounds
+# N.B.: these can't be greater than the number of nodes in the graph 
+#       or big in general as otherwise we risk losing vector information.
+#       this need to be dynamic. since our goal is to reach the tail node 
+#       and cycles in the graph reduce the length of the informative part of the 
+#       graph (chain) arbitrarily   
+#       The current fix has actually been to add the initial boundary embedding
+#       after every message passing step. While there is no problem with this for 
+#       for chains, for cycles this could cause oversquashing to emerge early/and 
+#       or too strongly.
+num_layers: 10
+
+do_hyper_sweep: False
+num_hyper_runs: 10
+
+# note that up till now in the project: this has been True
+set_hidden_eq_num_relations: False
+
+# wandb params
+turn_on_wandb: False
+wandb:
+  enabled: true
+  entity: "irtaza"
+  project: "gnn-systematic-generalisation"
+
+# a universal debug flag
+debug: False
+
+defaults:
+- _self_
+- experiments: default  # load mutable config parameters
